@@ -72,7 +72,7 @@ class DmozParser:
 
   def run(self):
     self._parser.setContentHandler(DmozHandler(self._handler))
-    self._parser.parse(FileWrapper('content.rdf.u8'))
+    self._parser.parse(FileWrapper('/Users/bazookabob/Work/DTL/topic_classification/dmoz/content.rdf.u8'))
 
   def add_handler(self, handler):
     self._handler = handler
