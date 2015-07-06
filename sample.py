@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 from parser import DmozParser
-from handlers import JSONWriter
+from handlers import JSONArrayWriter
 
 parser = DmozParser()
-parser.add_handler(JSONWriter('output.json'))
+parser.add_handler(JSONArrayWriter('output.json'))
 parser.run()

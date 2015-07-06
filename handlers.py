@@ -1,19 +1,29 @@
 import copy
 import simplejson
-class JSONWriter:
+
+import os
+
+class JSONArrayWriter:
   def __init__(self, name):
     self._file = open(name, 'w')
+    #added the opening bracket to wrap output into a JSON array
+    self._file.write("[\n")
 
   def page(self, page, content):
     if page != None and page != "":
       newcontent = copy.copy(content)
       newcontent["url"] = page
 
-      self._file.write(simplejson.dumps(newcontent) + "\n")
+      self._file.write(simplejson.dumps(newcontent) + ",\n")
     else:
       print "Skipping page %s, page attribute is missing" % page
 
   def finish(self):
+    #remove last coma and adding the bracket closing the json array
+    self._file.seek(-2, os.SEEK_END)
+    self._file.truncate()
+    self._file.write("\n]")
+
     self._file.close()
 
 class CSVWriter:
